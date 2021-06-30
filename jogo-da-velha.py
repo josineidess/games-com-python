@@ -8,20 +8,20 @@ jogador1 = True
 
 # condições de vitória
 
-cond00 = tab['00'] == tab['01'] == tab['02']
-cond11 = tab['10'] == tab['11'] == tab['12']
-cond22 = tab['20'] == tab['21'] == tab['22']
+cond00 = (tab['00'] == tab['01'] == tab['02']) and tab['00'] != '  '
+cond11 = (tab['10'] == tab['11'] == tab['12']) and tab['10'] != '  '
+cond22 = (tab['20'] == tab['21'] == tab['22']) and tab['20'] != '  '
 condHorizontal = cond00 or cond11 or cond22
 
-cond10 = tab['00'] == tab['10'] == tab['20']
-cond12 = tab['01'] == tab['11'] == tab['21']
-cond23 = tab['02'] == tab['12'] == tab['22']
+cond10 = (tab['00'] == tab['10'] == tab['20']) and tab['00'] != '  '
+cond12 = (tab['01'] == tab['11'] == tab['21']) and tab['01'] != '  '
+cond23 = (tab['02'] == tab['12'] == tab['22']) and tab['02'] != '  '
 condVertical = cond10 or cond12 or cond23
 
 condD1 = tab['00'] == tab['11'] == tab['22']
 condD2 = tab['02'] == tab['11'] == tab['20']
 
-condDiagonal = condD1 == condD2
+condDiagonal = (condD1 or condD2) and tab['11'] != '  '
 
 
 # desenhar tabuleiro
@@ -56,8 +56,8 @@ def joga(pos, jogador1):
         print("Posição ocupada...")
         return False
 
-# função que checa se as condições de vitória foram atendidas
 
+# função que checa se as condições de vitória foram atendidas
 
 def checa_vitoria():
     if(condHorizontal or condVertical or condDiagonal):
